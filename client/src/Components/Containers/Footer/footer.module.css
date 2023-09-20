@@ -1,0 +1,104 @@
+/* ----------------------- FOOTER ----------------------- */
+.footer {
+    position: relative;
+    margin-top: 3em;
+    background-color: #96b011;
+}
+.footer .footer_nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1em;
+    background-color: rgba(112, 125, 48, 0.36);
+}
+.footer .footer_nav > a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+.footer .footer_nav > a i {
+    padding: 0.5em;
+    font-size: 3rem;
+}
+.footer .footer_nav > a p {
+    font-size: 1.4rem;
+    white-space: nowrap;
+}
+.footer .footer_inner {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1em 20em;
+    text-align: center;
+    background: url("../../../assets/img/autres/bg.jpg") no-repeat;
+    background-position: bottom center;
+    background-size: auto 40%;
+}
+.footer .footer_inner > nav {
+    padding: 1em;
+}
+.footer .footer_inner > nav .footer_inner_title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 1em;
+    color: white;
+    text-transform: uppercase;
+}
+
+.footer .footer_inner > nav > a {
+    display: block;
+    margin: 0.3em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer .footer_3WA {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 2em 3em;
+    text-align: center;
+    background-color: rgba(112, 125, 48, 0.36);
+}
+.footer .footer_3WA .container > a > img {
+    width: 60px;
+    margin-bottom: 1em;
+}
+.footer .footer_3WA .container > p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+.footer .footer_3WA .container > p > a {
+    transition: color 0.3s;
+}
+.footer .footer_3WA .container > p > a:hover {
+    color: #DD5735;
+}
+
+/******************************************************************/
+/* ---------------------- VERSION TABLETTE ---------------------- */
+/******************************************************************/
+@media screen and (min-width: 768px) {
+    /* -------- FOOTER --------- */
+  .footer .footer_nav {
+    flex-direction: row;
+  }
+  .footer .footer_nav > a {
+    width: 20%;
+  }
+  .footer .footer_inner {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1em 1em 17em;
+    background-size: auto 60%;
+  }
+}
+
+/******************************************************************/
+/* ----------------------- VERSION DESKTOP ---------------------- */
+/******************************************************************/
+@media screen and (min-width: 1200px) {
+    
+}

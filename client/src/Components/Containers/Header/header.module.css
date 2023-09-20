@@ -1,0 +1,159 @@
+/* ----------------------- HEADER ----------------------- */
+.header {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2em;
+    background-color: #96b011;
+    /* -------- Elu melleur thé ------- */
+  }
+  .header .header_upper_bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 0.5em;
+    color: white;
+    background-color: rgba(112, 125, 48, 0.36);
+    z-index: 100;
+  }
+  .header .header_upper_bar > p {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 400;
+  }
+  .header .header_inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    background: url("../../../assets/img/autres/bg.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .header .header_inner > a:first-child {
+    width: 300px;
+    margin: 7em auto 1em;
+    padding: 1em;
+  }
+  .header .header_inner > a:first-child > img {
+    width: 100%;
+  }
+  .header .header_inner > a:nth-child(2) {
+    position: absolute;
+    top: 4em;
+    left: 0;
+    display: flex;
+    padding: 0.5em;
+    box-shadow: 2px 2px 8px rgba(112, 125, 48, 0.36);
+    border-radius: 0 1.75em 1.75em 0;
+  }
+  .header .header_inner > a:nth-child(2) > div {
+    width: 2.5em;
+    height: 2.5em;
+    padding: 0.5em;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+  }
+  .header .header_inner > a:nth-child(2) > div > i {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .header .header_inner > a:nth-child(2) > p:last-child {
+    position: relative;
+    padding: 0 1em 0 0.5em;
+    bottom: -0.1em;
+  }
+  .header .header_inner .header_nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 1em;
+  }
+  .header .header_inner .header_nav > a {
+    display: block;
+    width: 100%;
+    /*margin: 0.5em auto;*/
+    padding: 0.5em 0;
+    font-size: 2.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .header .header_inner .header_nav > a:hover {
+    transform: scaleY(1.2);
+    background-color: rgba(112, 125, 48, 0.36);
+  }
+  .header .header_inner .header_nav .connection_btn {
+    font-weight: 500;
+    color: rgb(127, 13, 13);
+  }
+  
+  .header .ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6em;
+    z-index: 101;
+  }
+
+  .tablet_hidden,
+  .mobile_hidden {
+    display: none;
+  }
+
+/******************************************************************/
+/* ---------------------- VERSION TABLETTE ---------------------- */
+/******************************************************************/
+@media screen and (min-width: 768px) {
+  .mobile_hidden {
+    display: inline-block;
+  }
+
+  /* -------- HEADER --------- */
+  .header {
+    margin-bottom: 0;
+  }
+  .header .header_inner > a:first-child {
+    margin: 2em 0 1em;
+    align-self: start;
+    padding: 1em 1.5em;
+  }
+  .header .header_inner > a:nth-child(2) {
+    left: auto;
+    top: 4em;
+    right: 0;
+    font-size: 2rem;
+    box-shadow: none;
+  }
+  .header .header_inner > a:nth-child(2) .mobile_hidden {
+    padding-right: 0.5em;
+  }
+  .header .header_inner > a:nth-child(2) > p:last-child {
+    bottom: 0;
+    font-weight: 700;
+  }
+  .header .header_inner .header_nav {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .header .header_inner .header_nav > a {
+    display: inline-block;
+    width: unset;
+    padding: 0.5em 1em;
+    font-size: 2.2rem;
+  }
+  .header .header_inner .header_nav > a:hover {
+    transform: none;
+    border-radius: 2.2em;
+    color: #DD5735;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/******************************************************************/
+/* ----------------------- VERSION DESKTOP ---------------------- */
+/******************************************************************/
+@media screen and (min-width: 1200px) {
+  .header > .header_inner > .header_nav {
+    justify-content: space-between;
+  }
+}

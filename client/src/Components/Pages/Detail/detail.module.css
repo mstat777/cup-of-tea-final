@@ -1,0 +1,94 @@
+main {
+  width: 100%;
+  text-align: center;
+}
+
+main .article_product {
+    margin-top: -2em;
+  }
+  main .article_product h3 {
+    font-size: 4rem;
+    margin-bottom: 0;
+  }
+  main .article_product .bold_subtitle {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  main .article_product .italic {
+    font-size: 2rem;
+    font-style: italic;
+  }
+  main .article_product i {
+    margin-top: 0.5em;
+    font-size: 2.5rem;
+    color: rgb(246, 231, 25);
+  }
+  main .article_product .grey {
+    color: lightgrey;
+  }
+  main .article_product .green {
+    margin-top: 0.5em;
+    font-size: 2rem;
+    color: #96b011;
+  }
+  main .article_product > select {
+    padding: 0.5em;
+    font-size: 2rem;
+    background-color: #f4f4f4;
+  }
+  main .article_product > select option {
+    padding: 0.5em;
+  }
+  main .article_product .large_text {
+    font-size: 4.5rem;
+    font-weight: 600;
+  }
+  main .article_product .add_to_cart_btn {
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: #b09067;
+    transition: all 0.3s;
+    display: block;
+    margin-top: 3em;
+    padding: 1em 1.5em;
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+  }
+  main .article_product .add_to_cart_btn:hover {
+    color: black;
+    background-color: rgba(176, 144, 103, 0.5);
+  }
+  main .article_product .fa_heart {
+    color: tomato;
+    padding: 0 0.5em;
+  }
+  main .article_product .bold {
+    font-weight: 700;
+  }
+
+  /******************************************************************/
+/* ---------------------- VERSION TABLETTE ---------------------- */
+/******************************************************************/
+@media screen and (min-width: 768px) {
+    .article_product {
+        text-align: left;
+      }
+      .article_product h3 {
+        font-size: 4rem;
+        margin-top: 1em;
+      }
+      .article_product div:first-child,
+      .article_product div:nth-child(2) {
+        display: flex;
+      }
+      .article_product .bold {
+        font-weight: 700;
+      }
+}
+
+/******************************************************************/
+/* ----------------------- VERSION DESKTOP ---------------------- */
+/******************************************************************/
+@media screen and (min-width: 1200px) {
+    
+}
