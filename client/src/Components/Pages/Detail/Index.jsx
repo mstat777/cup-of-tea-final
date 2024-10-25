@@ -10,19 +10,18 @@ function Detail() {
     const { cartInfo } = useSelector((state) => state.cart);
     const { info } = useSelector((state) => state.user);
     const params   = useParams();
-    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // pour afficher les infos du thé choisi:
-    const [tea, setTea] = useState(null);
+    const [tea, setTea] = useState({}); // le thé choisi
+    const [packages, setPackages] = useState([]);
     // changer les données affichées selon le package:
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(0); // l'indice pack sélectionné
 
     useEffect( () => {
-        async function getData() {
+        async function getTeaData() {
             try {
-                const res = await fetch("/api/v1/tea/" + params.url_tea + "/" + params.id );
+                const res = await fetch(`/api/v1/tea/${params.id}/${params.url_tea}`);
                 if(res.status === 404) {
                     navigate("/not-found");
                 }
@@ -34,8 +33,29 @@ function Detail() {
                 throw new Error(error);
             }
         }
-        getData();
-    }, []);
+
+        if (params.url_tea && params.id) {
+            getTeaData();
+        }
+    }, [params.url_tea, params.id]);
+
+    useEffect( () => {
+        async function getTeaPackages() {
+            try {
+                console.log(params.id);
+                const res = await (
+                        await fetch(`/api/v1/tea/packages/${params.id}`)
+                    ).json();
+                setPackages(res);
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
+
+        if (tea) {
+            getTeaPackages();
+        }
+    }, [tea]);
 
     function handleAddToCart() {
         // on cherche si un produit avec cette réf a déjà été ajouté au panier et si oui, à quelle position dans le tableau de produits
@@ -81,38 +101,39 @@ function Detail() {
             <section>
                 <h1 className={global.hidden}>Détail</h1>
                 {
-                !tea ? (
+                !tea || !packages ? (
                     <Loading />
                 ) : (
                     <article className={styles.article_product}>
                         <div>
-                            {console.log(tea[index])}
-                            <h3>{tea[index].label_1}</h3>
-                            <p className={styles.bold_subtitle}>{tea[index].label_2}</p>
-                            <p className={styles.italic}>Ref : {tea[index].ref}</p>
+                            {console.log(tea)}
+                            <h3>{tea.label_1}</h3>
+                            <p className={styles.bold_subtitle}>{tea.label_2}</p>
+                            <p><i>Ref : {tea.ref}</i></p>
                             <a href="#"><p className={styles.green}>Voir les 56 avis clients</p></a>
                         </div>
 
                         <div>
-                            <img src={"/img/tea/"+tea[index].url_image} alt="" />
+                            <img src={"/img/tea/"+tea.url_image} alt="" />
 
                             <select name="object"
                                     onChange={(e) => {
                                         setIndex(parseInt(e.target.value) - 1);
                                     }}>
-                                {tea.map(t => (
+                                {packages.map(pack => (
                                     <option 
-                                        key={t.packaging_id}
-                                        value={t.packaging_id}>Pochette de {t.package}
+                                        key={pack.packaging_id}
+                                        value={pack.packaging_id}>
+                                            Pochette de {pack.title}
                                     </option>
                                 ))}
                             </select>
 
-                            <p className={styles.large_text}>{tea[index].price}€</p>
-                            <button className={styles.add_to_cart_btn}
+                            <p className={styles.large_text}>{packages[index].price}€</p>
+                            <button className={global.main_btn}
                                 onClick={() => handleAddToCart()}>Ajouter au panier</button>
 
-                            <a href="#" className={styles.green}>
+                            <a href="#" className={styles.add_to_wishlist}>
                                 <p><i className={`${styles.fa_solid} ${styles.fa_heart}`}></i>Ajouter à ma liste d'envie</p>
                             </a>
                         </div>

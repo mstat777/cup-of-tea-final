@@ -9,7 +9,7 @@ function Home() {
     const [categories, setCategories] = useState([]);
     const [lastInserted, setLastInserted] = useState({});
     const [bestSeller, setBestSeller] = useState({});
-    const [favorite, setFavorite] = useState({});
+    const [favourite, setFavourite] = useState({});
 
     // récupère les catégories
     useEffect(() => {
@@ -44,8 +44,36 @@ function Home() {
     }, []);
 
     // récupère le thé meilleur vente
+    useEffect(() => {
+        async function getBestseller() {
+            try {
+                const result = await (
+                    await fetch("/api/v1/tea/best-seller")
+                ).json();
+                setBestSeller(result);
+            } catch (err) {
+                throw Error(err);
+            }
+        }
+
+        getBestseller();
+    }, []);
 
     // récupère le thé coup de coeur
+    useEffect(() => {
+        async function getFavourite() {
+            try {
+                const result = await (
+                    await fetch("/api/v1/tea/favourite")
+                ).json();
+                setFavourite(result);
+            } catch (err) {
+                throw Error(err);
+            }
+        }
+
+        getFavourite();
+    }, []);
 
     return (
         <main>
@@ -53,11 +81,13 @@ function Home() {
                 <h1 className={global.hidden}>Accueil</h1>
 
                 {/* <!-------- choisissez votre thé ----------> */}
-                {(!categories.length || !lastInserted) ? 
+                {(!categories.length || !lastInserted || !bestSeller || !favourite) ? 
                     <Loading /> : 
                 <section>
                     <Card type="categories" data={categories}/>
                     <Card type="tea" data={lastInserted} title="Notre nouveauté"/>
+                    <Card type="tea" data={bestSeller} title="Notre best-seller"/>
+                    <Card type="tea" data={favourite} title="Notre coup de coeur"/>
                 </section>}
 
             </section>

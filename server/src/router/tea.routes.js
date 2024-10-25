@@ -2,15 +2,21 @@ import { Router } from "express";
 
 import { 
     getAllTeas, 
-    getTeaByValues,
-    getLastTea
+    getLastTea,
+    getBestSeller,
+    getFavourite,
+    getTeaPackages,
+    getTeaByURL,
 } from "../controller/tea.js";
 
 const router = Router();
 
 // ROUTES APP
 router.get("/all", getAllTeas);
-router.get("/:url_tea/:id", getTeaByValues);
 router.get("/last", getLastTea);
+router.get("/best-seller", getBestSeller);
+router.get("/favourite", getFavourite);
+router.get("/packages/:id", getTeaPackages);
+router.get("/:id/:url_tea", getTeaByURL);
 
 export default router;

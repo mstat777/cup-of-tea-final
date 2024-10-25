@@ -1,3 +1,5 @@
+/*************** GENERALITES  *****************/
+/* Le corps du document */
 * {
     margin: 0;
     padding: 0;
@@ -9,17 +11,12 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
-}
-
-/*************** GENERALITES  *****************/
-/* Le corps du document */
-body {
+    font-size: 1.6rem;
 	line-height: 1.5;
 	font-family: "Open Sans", sans-serif;
 }
 
-/* Le titre principal d'un flux */
+/*********** HEADINGS ***********/
 h1 {
 	font-family: "Amaranth", sans-serif;
 	font-weight: 500;
@@ -28,7 +25,6 @@ h1 {
 	color: #96b011;
 }
 
-/* Le titre de second niveau  */
 h2 {
 	font-family: "Amaranth", sans-serif;
 	font-weight: 500;
@@ -36,7 +32,6 @@ h2 {
 	color: #96b011;
 }
 
-/* Le titre de troisième niveau */
 h3 {
 	font-family: "Amaranth", sans-serif;
 	font-weight: 500;
@@ -44,7 +39,7 @@ h3 {
 	font-size: 2.5rem;
 }
 
-/* Les liens */
+
 a {
 	text-decoration: none;
     transition: color .3s;
@@ -88,6 +83,30 @@ article + article {
 
 .hidden {
     display: none;
+}
+
+.main_btn {
+    display: inline-block;
+    margin-top: 2em;
+    padding: .8em 1.2em;
+    border: none;
+    font-size: 1.8rem;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+    color: white;
+    background-color: #b09067;
+    transition: all .3s;
+}
+.main_btn:hover {
+    cursor: pointer;
+    font-size: 500;
+    color: white;
+    background-color: #96b011;
+}
+
+.price {
+    font-weight: 500;
+    font-size: 2.4rem;
 }
 
 /******************************************************************/

@@ -5,23 +5,22 @@ import global from "../../../app.module.css";
 import Loading from "../../Containers/Loading/Index";
 
 function Tea() {
-    const [dataTeas, setDataTeas] = useState(null);
-    const [categories, setCategories] = useState(null);
+    const [teas, setTeas] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [teasByCategory, setTeasByCategory] = useState([]);
 
-    const [dataTeasByCategory, setDataTeasByCategory] = useState(null);
-
-    useEffect( () => {
+    useEffect(() => {
         async function getData() {
             try {
-                const result1 = await (
-                await fetch("/api/v1/tea/all") 
+                const resultTeas = await (
+                    await fetch("/api/v1/tea/all") 
                 ).json();
-                setDataTeas(result1.data);
+                setTeas(resultTeas);
 
-                const result2 = await (
-                await fetch("/api/v1/category/all") 
+                const resultCategories = await (
+                    await fetch("/api/v1/category/all") 
                 ).json();
-                setCategories(result2.data);
+                setCategories(resultCategories);
             } catch (error) {
                 console.log(error);
             }
@@ -31,16 +30,16 @@ function Tea() {
 
     useEffect( () => {
         const data = [];
-        if (categories) {
+        if (categories.length) {
             for (const category of categories) {
                 data.push({
                     category: category,
-                    teas: dataTeas.filter(el => el.category_id === category.id)
+                    teas: teas.filter(tea => tea.category_id === category.id)
                 })
             }
         }
-        setDataTeasByCategory(data);
-    }, [categories])
+        setTeasByCategory(data);
+    }, [categories.length])
 
 
     return (
@@ -49,38 +48,36 @@ function Tea() {
                 <h1 className={global.hidden}>Thés</h1>
 
                 {/* <!-------- sections ----------> */}
-                {!dataTeasByCategory ? (
+                {!teasByCategory ? (
                         <Loading />
                     ) : (
-                        dataTeasByCategory.map(datas => {
-                        return(
-                            <section key={datas.category.id}>
+                        teasByCategory.map(data => {
+                            return(
+                            <section key={data.category.id}>
                                 <article className={styles.desktop_horizontal}>
                                     <img
-                                        src={
-                                            "/img/category/" + datas.category.url_image
-                                        }
+                                        src={`/img/category/${data.category.url_image}`}
                                         alt=""
                                     />
                                     <div>
                                         <div className={styles.article_title_with_bar_right}>
-                                        <h2>{datas.category.label}</h2>
+                                        <h2>{data.category.label}</h2>
                                         </div>   
-                                        <p className={styles.t_align_l}>{datas.category.description}</p>
+                                        <p className={styles.t_align_l}>{data.category.description}</p>
                                     </div>     
                                 </article>
 
-                                {datas.teas.map(data => {
+                                {data.teas.map(data => {
                                     return(
                                         <article key={data.id}>
                                             <h3>{data.label_1}</h3>
-                                            <Link to={data.url_tea + "/" + data.id}><img
-                                            src={"/img/tea/" + data.url_image}
+                                            <Link to={`${data.url_tea}/${data.id}`}><img
+                                            src={`/img/tea/${data.url_image}`}
                                             alt="" /></Link>
                                             <p>À partir de<br/>
-                                            {data.price.replace(".", ",")}€
+                                                <span className={global.price}>{data.price.replace(".", ",")}€</span>
                                             </p>
-                                            <Link to={data.url_tea + "/" + data.id} className={styles.see_product_btn}>voir ce produit</Link>
+                                            <Link to={`${data.url_tea}/${data.id}`} className={global.main_btn}>voir ce produit</Link>
                                         </article>
                                         )
                                     }) 

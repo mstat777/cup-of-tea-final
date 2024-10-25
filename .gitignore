@@ -1,13 +1,13 @@
 # Client
-client/node_modules
-client/public/img
+/client/node_modules
+/client/public/img
 
 # Server
-server/node_modules
-server/.env
+/server/node_modules
+/server/.env
 
 # Other
-db
-maquette
-backup
-README (1).md
+/db
+/maquette
+/backup
+/README(1).md

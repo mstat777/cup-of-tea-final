@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './card.module.css';
+import global from '../../../app.module.css';
 
 function Card(props) {
     const { type, data, title } = props;
@@ -30,8 +31,9 @@ function Card(props) {
                     <figcaption>{data.label_1}</figcaption>
                 </figure>
                 <p>{data.description}</p>
-                <p>À partir de<br/>price€</p>
-                <Link to={`/the/${data.label_1}/${data.id}`}>voir ce produit</Link>
+                <p>À partir de<br/>
+                <span className={styles.price}>{data.price}€</span></p>
+                <Link to={`/the/${data.label_1}/${data.id}`} className={global.main_btn}>voir ce produit</Link>
             </article>}
         </>
     )
