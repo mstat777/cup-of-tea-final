@@ -6,7 +6,7 @@ const { sign } = jsonwebtoken;
 const { SK } = process.env;
 const SALT = 10;
 
-const checkToken = async (req, res) => {
+async function checkToken(req, res) {
     try {
         const queryUser = "SELECT label FROM user WHERE label = ?";
         await Query.findByValue(queryUser, req.params.label);
@@ -16,7 +16,7 @@ const checkToken = async (req, res) => {
     }
 }
 
-const signIn = async (req, res) => {
+async function signIn(req, res) {
     try {
         let msg = "";
         
@@ -35,7 +35,7 @@ const signIn = async (req, res) => {
     }
 }
 
-const createAccount = async (req, res) => {
+async function createAccount(req, res) {
     try {
         let msg = "";
         const datas = { label: req.body.label, email: req.body.email}; 

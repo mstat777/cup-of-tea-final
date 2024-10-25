@@ -2,7 +2,11 @@ import notfound from "./404.jpg";
 
 function NotFound() {
     return (
-        <img src={notfound} alt="" />
+        <main>
+            <section>
+                <img src={notfound} alt="Page non trouvée" />
+            </section>
+        </main>
     )
 }
 

@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../Containers/Loading/Index";
-
 import styles from "./detail.module.css";
-
+import global from "../../../app.module.css";
 import { addToCart } from "../../../store/slices/cart";
 
 function Detail() {
@@ -78,56 +77,59 @@ function Detail() {
     }
 
     return (
-        <main className={styles.container}>
-            {
-            !tea ? (
-                <Loading />
-            ) : (
-                <article className={styles.article_product}>
-                    <div>
-                        {console.log(tea[index])}
-                        <h3>{tea[index].label_1}</h3>
-                        <p className={styles.bold_subtitle}>{tea[index].label_2}</p>
-                        <p className={styles.italic}>Ref : {tea[index].ref}</p>
-                        <a href="#"><p className={styles.green}>Voir les 56 avis clients</p></a>
-                    </div>
+        <main>
+            <section>
+                <h1 className={global.hidden}>Détail</h1>
+                {
+                !tea ? (
+                    <Loading />
+                ) : (
+                    <article className={styles.article_product}>
+                        <div>
+                            {console.log(tea[index])}
+                            <h3>{tea[index].label_1}</h3>
+                            <p className={styles.bold_subtitle}>{tea[index].label_2}</p>
+                            <p className={styles.italic}>Ref : {tea[index].ref}</p>
+                            <a href="#"><p className={styles.green}>Voir les 56 avis clients</p></a>
+                        </div>
 
-                    <div>
-                        <img src={"/img/tea/"+tea[index].url_image} alt="" />
+                        <div>
+                            <img src={"/img/tea/"+tea[index].url_image} alt="" />
 
-                        <select name="object"
-                                onChange={(e) => {
-                                    setIndex(parseInt(e.target.value) - 1);
-                                }}>
-                            {tea.map(t => (
-                                <option 
-                                    key={t.packaging_id}
-                                    value={t.packaging_id}>Pochette de {t.package}
-                                </option>
-                            ))}
-                        </select>
+                            <select name="object"
+                                    onChange={(e) => {
+                                        setIndex(parseInt(e.target.value) - 1);
+                                    }}>
+                                {tea.map(t => (
+                                    <option 
+                                        key={t.packaging_id}
+                                        value={t.packaging_id}>Pochette de {t.package}
+                                    </option>
+                                ))}
+                            </select>
 
-                        <p className={styles.large_text}>{tea[index].price}€</p>
-                        <button className={styles.add_to_cart_btn}
-                            onClick={() => handleAddToCart()}>Ajouter au panier</button>
+                            <p className={styles.large_text}>{tea[index].price}€</p>
+                            <button className={styles.add_to_cart_btn}
+                                onClick={() => handleAddToCart()}>Ajouter au panier</button>
 
-                        <a href="#" className={styles.green}>
-                            <p><i className={`${styles.fa_solid} ${styles.fa_heart}`}></i>Ajouter à ma liste d'envie</p>
-                        </a>
-                    </div>
+                            <a href="#" className={styles.green}>
+                                <p><i className={`${styles.fa_solid} ${styles.fa_heart}`}></i>Ajouter à ma liste d'envie</p>
+                            </a>
+                        </div>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Itaque aliquid non omnis aperiam quia accusamus repellendus quo reprehenderit 
-                        dicta enim, rerum dolorem quisquam, sit rem molestiae, debitis blanditiis quidem ratione?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Ex repellendus adipisci laudantium exercitationem! 
-                        Magni natus facere, assumenda quisquam voluptatum beatae mollitia cumque, perspiciatis modi vel harum aliquid! 
-                        Velit, distinctio saepe adipisci neque numquam fugit, pariatur corporis suscipit accusamus omnis aliquid!</p>
-                    <p className={styles.bold}>Profitez d'une remise de 5% sur la pochette de 500g (prix déjà remisé).</p>
-                    <p className={styles.bold}>Profitez d'une remise de 10% sur le lot de 2 pochettes de 500g (prix déjà remisé).</p>
-                </article>
-                )
-            }
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Itaque aliquid non omnis aperiam quia accusamus repellendus quo reprehenderit 
+                            dicta enim, rerum dolorem quisquam, sit rem molestiae, debitis blanditiis quidem ratione?</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Ex repellendus adipisci laudantium exercitationem! 
+                            Magni natus facere, assumenda quisquam voluptatum beatae mollitia cumque, perspiciatis modi vel harum aliquid! 
+                            Velit, distinctio saepe adipisci neque numquam fugit, pariatur corporis suscipit accusamus omnis aliquid!</p>
+                        <p className={styles.bold}>Profitez d'une remise de 5% sur la pochette de 500g (prix déjà remisé).</p>
+                        <p className={styles.bold}>Profitez d'une remise de 10% sur le lot de 2 pochettes de 500g (prix déjà remisé).</p>
+                    </article>
+                    )
+                }
+            </section>
         </main>
     )
 }

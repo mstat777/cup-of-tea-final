@@ -31,34 +31,38 @@ function Signup(){
     }
 
     return (
-        <>
-            {msg && <p className={styles.msg}>{msg}</p>}
-            
-            <form onSubmit={handleSubmit}>
-                <input
-                    placeholder="Votre alias"
-                    type="text"
-                    name="label"
-                    value={label}
-                    onChange={(e) => setLabel(e.target.value)}
-                />
-                <input
-                    placeholder="votre email"
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    placeholder="Votre mot de passe"
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type="submit">s'enregistrer</button>
-            </form>
-        </>
+        <main>
+            <section>
+                <h1>Créer mon compte</h1>
+
+                {msg && <p className={styles.msg}>{msg}</p>}
+                
+                <form onSubmit={handleSubmit}>
+                    <input
+                        placeholder="Votre alias"
+                        type="text"
+                        name="label"
+                        value={label}
+                        onChange={(e) => setLabel(e.target.value)}
+                    />
+                    <input
+                        placeholder="votre email"
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        placeholder="Votre mot de passe"
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button type="submit">s'enregistrer</button>
+                </form>
+            </section>
+        </main>
     )
 }
 

@@ -2,158 +2,188 @@
 .header {
     position: relative;
     width: 100%;
-    margin-bottom: 2em;
     background-color: #96b011;
-    /* -------- Elu melleur thé ------- */
-  }
-  .header .header_upper_bar {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    padding: 0.5em;
-    color: white;
-    background-color: rgba(112, 125, 48, 0.36);
-    z-index: 100;
-  }
-  .header .header_upper_bar > p {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 400;
-  }
-  .header .header_inner {
+}
+
+.header_inner {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
+    padding-top: 2em;
     background: url("../../../assets/img/autres/bg.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-  }
-  .header .header_inner > a:first-child {
-    width: 300px;
-    margin: 7em auto 1em;
-    padding: 1em;
-  }
-  .header .header_inner > a:first-child > img {
-    width: 100%;
-  }
-  .header .header_inner > a:nth-child(2) {
+}
+
+.header_promo {
     position: absolute;
-    top: 4em;
-    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: .5em;
+    text-align: center;
+    color: white;
+    background-color: rgba(112, 125, 48, .36);
+    z-index: 100;
+}
+
+.logo_and_cart_div {
     display: flex;
-    padding: 0.5em;
-    box-shadow: 2px 2px 8px rgba(112, 125, 48, 0.36);
-    border-radius: 0 1.75em 1.75em 0;
-  }
-  .header .header_inner > a:nth-child(2) > div {
-    width: 2.5em;
-    height: 2.5em;
-    padding: 0.5em;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    flex-direction: column-reverse;
+    width: 100%;
+    padding: 1em 0;
+}
+
+.logo_ctn {
+    align-self: center;
+    width: 240px;
+    margin: 1em auto;
+}
+
+.cart_ctn {
+    display: inline-flex;  
+    align-items: center;
+    height: 2.6em;
+    margin-right: auto;
+    padding: .5em 1em .5em 0;
+    border-radius: 0 1.3em 1.3em 0;
+    box-shadow: 2px 2px 8px rgba(112, 125, 48, .6);
+    color: rgba(255, 255, 255, .5);
+}
+.cart_svg_ctn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4em;
+    height: 2.4em;
+    margin-left: .5em;
+    border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 50%;
-  }
-  .header .header_inner > a:nth-child(2) > div > i {
-    color: rgba(255, 255, 255, 0.5);
-  }
-  .header .header_inner > a:nth-child(2) > p:last-child {
-    position: relative;
-    padding: 0 1em 0 0.5em;
-    bottom: -0.1em;
-  }
-  .header .header_inner .header_nav {
+}
+
+.price_txt {
+    margin-left: .5em;
+    font-weight: 500;
+    color: white;
+}
+
+.header_nav {
     display: flex;
     flex-direction: column;
+    text-align: center;
     width: 100%;
-    padding-bottom: 1em;
-  }
-  .header .header_inner .header_nav > a {
+    padding-bottom: 2em;
+}
+.header_nav > a {
     display: block;
     width: 100%;
-    /*margin: 0.5em auto;*/
-    padding: 0.5em 0;
+    padding: .5em 0;
     font-size: 2.4rem;
-    font-weight: 400;
+    font-weight: 300;
+    color: white;
     text-transform: uppercase;
-    transition: all 0.3s;
-  }
-  .header .header_inner .header_nav > a:hover {
-    transform: scaleY(1.2);
-    background-color: rgba(112, 125, 48, 0.36);
-  }
-  .header .header_inner .header_nav .connection_btn {
+    transition: all .3s;
+}
+
+.header_nav .connection_btn {
     font-weight: 500;
     color: rgb(127, 13, 13);
-  }
-  
-  .header .ribbon {
+}
+
+.header .ribbon {
     position: absolute;
     top: 0;
     right: 0;
     width: 6em;
     z-index: 101;
-  }
+}
 
-  .tablet_hidden,
-  .mobile_hidden {
+.tablet_hidden,
+.mobile_hidden {
     display: none;
-  }
+}
 
 /******************************************************************/
 /* ---------------------- VERSION TABLETTE ---------------------- */
 /******************************************************************/
 @media screen and (min-width: 768px) {
-  .mobile_hidden {
-    display: inline-block;
-  }
+    .header {
+        margin-bottom: 0;
+    }
 
-  /* -------- HEADER --------- */
-  .header {
-    margin-bottom: 0;
-  }
-  .header .header_inner > a:first-child {
-    margin: 2em 0 1em;
-    align-self: start;
-    padding: 1em 1.5em;
-  }
-  .header .header_inner > a:nth-child(2) {
-    left: auto;
-    top: 4em;
-    right: 0;
-    font-size: 2rem;
-    box-shadow: none;
-  }
-  .header .header_inner > a:nth-child(2) .mobile_hidden {
-    padding-right: 0.5em;
-  }
-  .header .header_inner > a:nth-child(2) > p:last-child {
-    bottom: 0;
-    font-weight: 700;
-  }
-  .header .header_inner .header_nav {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  .header .header_inner .header_nav > a {
-    display: inline-block;
-    width: unset;
-    padding: 0.5em 1em;
-    font-size: 2.2rem;
-  }
-  .header .header_inner .header_nav > a:hover {
-    transform: none;
-    border-radius: 2.2em;
-    color: #DD5735;
-    background-color: rgba(255, 255, 255, 0.5);
-  }
+    .header_inner {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .logo_and_cart_div {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo_ctn {
+        margin-left: 2em;
+    }
+
+    .cart_ctn {
+        margin-right: 1em;
+        box-shadow: none;
+    }
+
+    .header_nav {
+        flex-direction: row;
+        justify-content: space-around;
+        padding-bottom: 1em;
+    }
+    .header_nav > a {
+        display: inline-block;
+        width: unset;
+        padding: .5em 1em;
+        font-size: 2rem;
+    }
+    .header_nav > a:hover {
+        transform: none;
+        border-radius: 2.2em;
+        color: #DD5735;
+        background-color: rgba(255, 255, 255, .5);
+    }
+
+    .header .ribbon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 6em;
+        z-index: 101;
+    }
+
+    .mobile_hidden {
+        display: inline-block;
+    }
 }
 
 /******************************************************************/
 /* ----------------------- VERSION DESKTOP ---------------------- */
 /******************************************************************/
 @media screen and (min-width: 1200px) {
-  .header > .header_inner > .header_nav {
-    justify-content: space-between;
-  }
+    .header_promo {
+        font-size: 1.4rem;
+    }
+
+    .logo_and_cart_div {
+        padding: 0;
+    }
+
+    .logo_ctn {
+        width: 160px;
+    }
+
+    .header_nav {
+        justify-content: space-between;
+    }
+
+    .header_nav > a {
+        font-size: 1.8rem;
+    }
 }

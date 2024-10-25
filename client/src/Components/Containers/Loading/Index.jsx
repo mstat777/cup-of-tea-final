@@ -4,5 +4,4 @@ function Loading() {
     return <img src={spinner} alt="" />;
 }
 
-
 export default Loading;

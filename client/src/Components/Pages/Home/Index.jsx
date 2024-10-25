@@ -1,23 +1,24 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-
 import styles from "./home.module.css";
+import global from "../../../app.module.css";
 import Loading from "../../Containers/Loading/Index";
+import Card from "../../Containers/Card/Index";
 
 function Home() {
-    const [categories, setCategories] = useState(null);
-    const [lastInserted, setLastInserted] = useState(null);
-    const [bestSeller, setBestSeller] = useState('');
-    const [favorite, setFavorite] = useState(null);
+    const [categories, setCategories] = useState([]);
+    const [lastInserted, setLastInserted] = useState({});
+    const [bestSeller, setBestSeller] = useState({});
+    const [favorite, setFavorite] = useState({});
 
-    // récupère et mets à jour une state pour les catégories
+    // récupère les catégories
     useEffect(() => {
         async function getData() {
             try {
                 const result = await (
                     await fetch("/api/v1/category/all")
                 ).json();
-                setCategories(result.data)
+                setCategories(result);
             } catch (err) {
                 throw Error(err);
             }
@@ -26,34 +27,40 @@ function Home() {
         getData();
     }, []);
 
-    // récupère et mets à jour une state pour le dernier thé insérer en BDD
+    // récupère le dernier thé insérer en BDD
+    useEffect(() => {
+        async function getLastTea() {
+            try {
+                const result = await (
+                    await fetch("/api/v1/tea/last")
+                ).json();
+                setLastInserted(result);
+            } catch (err) {
+                throw Error(err);
+            }
+        }
 
-    // récupère et mets à jour une state pour le thé meilleur vente
+        getLastTea();
+    }, []);
 
-    // récupère et mets à jour une state pour le thé coup de coeur
+    // récupère le thé meilleur vente
+
+    // récupère le thé coup de coeur
 
     return (
-        <main className={styles.container}>
-            {/* <!-------- choisissez votre thé ----------> */}
-            <article className={styles.select_a_tea}>
-                <div className={styles.article_title_with_bar}>
-                    <h2>Choissisez votre thé</h2>
-                </div>
-                <div className={styles.select_a_tea_flex}>
-                    {!categories ? (
-                        <Loading />
-                    ) : (
-                        categories.map((data) => {
-                        <Link to={"/"} key={data.id}>
-                            <img src={""} alt="" />
-                            <h3>{data.label_1}</h3>
-                        </Link>
-                        })
-                    )}
-                </div>
-            </article>
+        <main>
+            <section>
+                <h1 className={global.hidden}>Accueil</h1>
 
-            
+                {/* <!-------- choisissez votre thé ----------> */}
+                {(!categories.length || !lastInserted) ? 
+                    <Loading /> : 
+                <section>
+                    <Card type="categories" data={categories}/>
+                    <Card type="tea" data={lastInserted} title="Notre nouveauté"/>
+                </section>}
+
+            </section>
         </main>
     )
 }

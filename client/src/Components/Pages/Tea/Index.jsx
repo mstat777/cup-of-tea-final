@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./tea.module.css";
+import global from "../../../app.module.css";
 import Loading from "../../Containers/Loading/Index";
-
 
 function Tea() {
     const [dataTeas, setDataTeas] = useState(null);
@@ -44,50 +44,54 @@ function Tea() {
 
 
     return (
-        <main className={styles.container}>
-            {/* <!-------- sections ----------> */}
-            {!dataTeasByCategory ? (
-                    <Loading />
-                ) : (
-                    dataTeasByCategory.map(datas => {
-                    return(
-                        <section key={datas.category.id}>
-                            <article className={styles.desktop_horizontal}>
-                                <img
-                                    src={
-                                        "/img/category/" + datas.category.url_image
-                                    }
-                                    alt=""
-                                />
-                                <div>
-                                    <div className={styles.article_title_with_bar_right}>
-                                    <h2>{datas.category.label}</h2>
-                                    </div>   
-                                    <p className={styles.t_align_l}>{datas.category.description}</p>
-                                </div>     
-                            </article>
+        <main>
+            <section>
+                <h1 className={global.hidden}>Thés</h1>
 
-                            {datas.teas.map(data => {
-                                return(
-                                    <article key={data.id}>
-                                        <h3>{data.label_1}</h3>
-                                        <Link to={data.url_tea + "/" + data.id}><img
-                                        src={"/img/tea/" + data.url_image}
-                                        alt="" /></Link>
-                                        <p>À partir de<br/>
-                                        {data.price.replace(".", ",")}€
-                                        </p>
-                                        <Link to={data.url_tea + "/" + data.id} className={styles.see_product_btn}>voir ce produit</Link>
-                                    </article>
-                                    )
-                                }) 
-                            }
+                {/* <!-------- sections ----------> */}
+                {!dataTeasByCategory ? (
+                        <Loading />
+                    ) : (
+                        dataTeasByCategory.map(datas => {
+                        return(
+                            <section key={datas.category.id}>
+                                <article className={styles.desktop_horizontal}>
+                                    <img
+                                        src={
+                                            "/img/category/" + datas.category.url_image
+                                        }
+                                        alt=""
+                                    />
+                                    <div>
+                                        <div className={styles.article_title_with_bar_right}>
+                                        <h2>{datas.category.label}</h2>
+                                        </div>   
+                                        <p className={styles.t_align_l}>{datas.category.description}</p>
+                                    </div>     
+                                </article>
 
-                        </section> 
-                    )}
+                                {datas.teas.map(data => {
+                                    return(
+                                        <article key={data.id}>
+                                            <h3>{data.label_1}</h3>
+                                            <Link to={data.url_tea + "/" + data.id}><img
+                                            src={"/img/tea/" + data.url_image}
+                                            alt="" /></Link>
+                                            <p>À partir de<br/>
+                                            {data.price.replace(".", ",")}€
+                                            </p>
+                                            <Link to={data.url_tea + "/" + data.id} className={styles.see_product_btn}>voir ce produit</Link>
+                                        </article>
+                                        )
+                                    }) 
+                                }
+
+                            </section> 
+                        )}
+                        )
                     )
-                )
-            }
+                }
+            </section>
         </main>
     )
 }

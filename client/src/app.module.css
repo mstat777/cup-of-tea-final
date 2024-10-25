@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+/*************** GENERALITES  *****************/
+/* Le corps du document */
+body {
+	line-height: 1.5;
+	font-family: "Open Sans", sans-serif;
+}
+
+/* Le titre principal d'un flux */
+h1 {
+	font-family: "Amaranth", sans-serif;
+	font-weight: 500;
+	margin: 1em 0;
+	font-size: 4rem;
+	color: #96b011;
+}
+
+/* Le titre de second niveau  */
+h2 {
+	font-family: "Amaranth", sans-serif;
+	font-weight: 500;
+	font-size: 3rem;
+	color: #96b011;
+}
+
+/* Le titre de troisième niveau */
+h3 {
+	font-family: "Amaranth", sans-serif;
+	font-weight: 500;
+	margin: .5em 0;
+	font-size: 2.5rem;
+}
+
+/* Les liens */
+a {
+	text-decoration: none;
+    transition: color .3s;
+}
+
+p {
+	margin: .5em 0;
+	line-height: 1.4;
+}
+  
+p + p {
+	margin-top: 1em;
+}
+
+img {
+	height: auto;
+	width: 100%;
+}
+
+main {
+	width: 100%;
+	text-align: center;
+    color: #555;
+	background-color: #f2f2f2;
+}
+
+main > section {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+article {
+	padding: 1em 2em;
+	text-align: center;
+	background-color: white;
+}
+
+article + article {
+    margin-top: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+/******************************************************************/
+/* ----------------------- VERSION DESKTOP ---------------------- */
+/******************************************************************/
+
+@media screen and (min-width: 1200px) {
+	main > section {
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: space-between;
+	}
+	main > section > article {
+	  width: 1/3;
+	  padding: 1em;
+	}
+}

@@ -2,103 +2,125 @@
 .footer {
     position: relative;
     margin-top: 3em;
+    background: url("../../../assets/img/autres/bg.jpg") no-repeat;
+    background-position: bottom center;
+    background-size: auto 40%;
     background-color: #96b011;
 }
-.footer .footer_nav {
+
+.footer_icons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 1em;
-    background-color: rgba(112, 125, 48, 0.36);
+    background-color: rgba(112, 125, 48, .36);
 }
-.footer .footer_nav > a {
+.footer_icons > div {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50%;
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+    color: rgba(255, 255, 255, .5);
     text-transform: uppercase;
 }
-.footer .footer_nav > a i {
-    padding: 0.5em;
-    font-size: 3rem;
+.footer_icons > div > svg {
+    padding: .5em;
+    height: 3rem;
 }
-.footer .footer_nav > a p {
-    font-size: 1.4rem;
-    white-space: nowrap;
-}
-.footer .footer_inner {
+
+.footer_links {
     display: flex;
     flex-direction: column;
-    padding: 1em 1em 20em;
+    padding: 1em;
     text-align: center;
-    background: url("../../../assets/img/autres/bg.jpg") no-repeat;
-    background-position: bottom center;
-    background-size: auto 40%;
 }
-.footer .footer_inner > nav {
+.footer_links > nav {
     padding: 1em;
 }
-.footer .footer_inner > nav .footer_inner_title {
+
+.footer_links > nav > h2 {
+    font-family: 'Open Sans';
     font-size: 1.8rem;
-    font-weight: 500;
     margin: 1em;
     color: white;
     text-transform: uppercase;
 }
-
-.footer .footer_inner > nav > a {
+.footer_links > nav > a {
     display: block;
-    margin: 0.3em;
-    color: rgba(255, 255, 255, 0.5);
+    margin: .3em;
+    color: rgba(255, 255, 255, .5);
+}
+.footer_links > nav > a:hover {
+    color: white;
 }
 
-.footer .footer_3WA {
-    position: absolute;
-    bottom: 0;
+.footer_3WA {
     width: 100%;
-    padding: 2em 3em;
+    padding: 2em;
     text-align: center;
-    background-color: rgba(112, 125, 48, 0.36);
+    background-color: rgba(112, 125, 48, .36);
 }
-.footer .footer_3WA .container > a > img {
+.footer_3WA > a > img {
     width: 60px;
     margin-bottom: 1em;
 }
-.footer .footer_3WA .container > p {
+.footer_3WA > p {
     font-size: 1.2rem;
     line-height: 1.6;
 }
-.footer .footer_3WA .container > p > a {
-    transition: color 0.3s;
+.footer_3WA > p > a {
+    color: rgba(255, 255, 255, .5);
 }
-.footer .footer_3WA .container > p > a:hover {
-    color: #DD5735;
+.footer_3WA > p > a:hover {
+    color: white;
 }
 
 /******************************************************************/
 /* ---------------------- VERSION TABLETTE ---------------------- */
 /******************************************************************/
 @media screen and (min-width: 768px) {
-    /* -------- FOOTER --------- */
-  .footer .footer_nav {
-    flex-direction: row;
-  }
-  .footer .footer_nav > a {
-    width: 20%;
-  }
-  .footer .footer_inner {
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 1em 1em 17em;
-    background-size: auto 60%;
-  }
+    .footer {
+        background-size: auto 60%;
+    }
+    .footer_icons {
+        flex-direction: row;
+    }
+    .footer_icons > div {
+        width: 20%;
+    }
+
+    .footer_links {
+        flex-direction: row;
+        justify-content: space-around;
+    }
 }
 
 /******************************************************************/
 /* ----------------------- VERSION DESKTOP ---------------------- */
 /******************************************************************/
 @media screen and (min-width: 1200px) {
-    
+    .footer_icons > div > svg {
+        height: 2rem;
+        padding: 0;
+    }
+
+    .footer_links {
+        padding: 0;
+    }
+    .footer_links > nav > h2 {
+        font-size: 1.4rem;
+    }
+    .footer_links > nav > a {
+        font-size: 1.2rem;
+    }
+
+    .footer_3WA {
+        padding: 1em;
+    }
+    .footer_3WA > a > img {
+        width: 40px;
+        margin-bottom: 0;
+    }
 }

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-
 import styles from "./signin.module.css";
 import { signIn } from "../../../../store/slices/user";
 
@@ -35,27 +34,31 @@ function Signin() {
     }
 
     return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <label for="label">Alias : </label>
-            <input
-                type="text"
-                name="label"
-                value={label}
-                onChange={(e) => setLabel(e.target.value)}
-            />
-            <label for="password">Mot de passe : </label>
-            <input 
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <input type="submit" value="se connecter" />
-        </form>
-        <p>Vous n'avez pas de compte ? {" "}
-        En créer un <Link to={"/signup"}>ici</Link>.</p>
-        </>
+        <main>
+            <section>
+                <h1>connexion</h1>
+
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="label">Alias : </label>
+                    <input
+                        type="text"
+                        name="label"
+                        value={label}
+                        onChange={(e) => setLabel(e.target.value)}
+                    />
+                    <label htmlFor="password">Mot de passe : </label>
+                    <input 
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <input type="submit" value="se connecter" />
+                </form>
+                <p>Vous n'avez pas de compte ? {" "}
+                En créer un <Link to="/signup">ici</Link>.</p>
+            </section>
+        </main>
     );
 }
 

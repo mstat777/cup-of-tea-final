@@ -10,15 +10,15 @@ main .select_a_tea {
   main .select_a_tea_flex > a {
     display: inline-block;
     width: 50%;
-    padding: 0.5em;
+    padding: .5em;
     text-align: center;
     color: black;
   }
   main .select_a_tea_flex > a > img {
-    transition: opacity 0.3s;
+    transition: opacity .3s;
   }
   main .select_a_tea_flex > a > img:hover {
-    opacity: 0.5;
+    opacity: .5;
   }
   main section {
     margin-top: 2em;
@@ -31,14 +31,14 @@ main .select_a_tea {
     display: inline-block;
     text-transform: uppercase;
     background-color: #b09067;
-    transition: all 0.3s;
+    transition: all .3s;
     margin-top: 1em;
     padding: 1em 1.5em;
-    letter-spacing: 0.2rem;
+    letter-spacing: .2rem;
   }
   main section > article .see_product_btn:hover {
     color: black;
-    background-color: rgba(176, 144, 103, 0.5);
+    background-color: rgba(176, 144, 103, .5);
   }
 
   /******************************************************************/

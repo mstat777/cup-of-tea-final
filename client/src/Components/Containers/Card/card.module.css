@@ -1,0 +1,29 @@
+.article_title_with_bar_right,
+.article_title_with_bar {
+    margin-bottom: 2em;
+    border-bottom: 3px solid #f2f2f2;
+    text-align: center;
+}
+
+.article_title_with_bar_right h2,
+.article_title_with_bar h2 {
+    position: relative;
+    bottom: -2rem;
+    display: inline-block;
+    padding: 0 .5em;
+    white-space: nowrap;
+    background-color: white;
+}
+
+/***** Categories *****/
+.category_ctn {
+    display: inline-block;
+    width: 50%;
+    padding: .5em;
+}
+
+.category_ctn > figcaption {
+    font-family: "Amaranth", sans-serif;
+	font-weight: 500;
+	font-size: 2.2rem;
+}

@@ -1,6 +1,13 @@
+# Client
 client/node_modules
+client/public/img
+
+# Server
 server/node_modules
 server/.env
+
+# Other
 db
 maquette
 backup
+README (1).md
