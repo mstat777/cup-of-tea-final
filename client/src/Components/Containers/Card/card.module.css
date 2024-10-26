@@ -16,6 +16,7 @@
 }
 
 /***** Categories *****/
+.cart_item_img_ctn,
 .category_ctn {
     display: inline-block;
     width: 50%;
@@ -26,4 +27,15 @@ figcaption {
     font-family: "Amaranth", sans-serif;
 	font-weight: 500;
 	font-size: 2.2rem;
+}
+
+.cart_item_info_ctn {
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+    text-align: left;
+}
+
+.cart_item_info_ctn p + p {
+    margin-top: 0;
 }

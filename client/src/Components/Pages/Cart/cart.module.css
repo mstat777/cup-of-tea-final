@@ -1,0 +1,9 @@
+.totals {
+    border-top: 3px solid #f2f2f2;
+    padding: 1em 1em 4em;
+    background-color: #f2f2f2;
+}
+
+.totals > h2 {
+    font-size: 2.4rem;
+}

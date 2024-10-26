@@ -4,21 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../Containers/Loading/Index";
 import styles from "./detail.module.css";
 import global from "../../../app.module.css";
-import { addToCart } from "../../../store/slices/cart";
+import { setCart } from "../../../store/slices/cart";
+import { calculateCartTotal } from "../../Functions/utils";
 
 function Detail() {
     const { cartInfo } = useSelector((state) => state.cart);
-    const { info } = useSelector((state) => state.user);
+    const { userInfo } = useSelector((state) => state.user);
     const params   = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [tea, setTea] = useState({}); // le thé choisi
     const [packages, setPackages] = useState([]);
-    // changer les données affichées selon le package:
-    const [index, setIndex] = useState(0); // l'indice pack sélectionné
+    const [index, setIndex] = useState(0); // l'indice du package sélectionné
 
-    useEffect( () => {
+    useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth'}) },[]);
+
+    useEffect(() => {
         async function getTeaData() {
             try {
                 const res = await fetch(`/api/v1/tea/${params.id}/${params.url_tea}`);
@@ -39,10 +41,9 @@ function Detail() {
         }
     }, [params.url_tea, params.id]);
 
-    useEffect( () => {
+    useEffect(() => {
         async function getTeaPackages() {
             try {
-                console.log(params.id);
                 const res = await (
                         await fetch(`/api/v1/tea/packages/${params.id}`)
                     ).json();
@@ -58,42 +59,46 @@ function Detail() {
     }, [tea]);
 
     function handleAddToCart() {
-        // on cherche si un produit avec cette réf a déjà été ajouté au panier et si oui, à quelle position dans le tableau de produits
-        const indexProduct = cartInfo.product.findIndex(
-            (product_cart) => product_cart.ref === tea[index].ref
+        // cherche si un produit avec cette réf a déjà été ajouté au panier et si oui, à quelle position dans le tableau de produits
+        const indexProduct = cartInfo.products.findIndex(
+            (product_cart) => product_cart.ref === packages[index].ref
         );
+
+        let newCart = {};
 
         // dans le cas il n'existe pas dans le panier, la fonction findIndex retourne une valeur '-1'
         if (indexProduct === -1) {
-            // on crée un nouveau panier à la base de l'ancien et on l'eregistre dans localstorage (en écrasant l'ancien)
-            const newCart = {
-                product: [
-                    ...cartInfo.product,
-                    { ref: tea[index], 
+            // on crée un nouveau panier à la base de l'ancien et on l'enregistre dans localstorage
+            newCart = {
+                products: [
+                    ...cartInfo.products,
+                    { label_1: tea.label_1,
+                      ref: packages[index].ref, 
                       quantity: 1, 
-                      priceEach: parseFloat(tea[index].price)}
+                      priceEach: parseFloat(packages[index].price),
+                      url_image: tea.url_image}
                 ],
-                buyer: info.id
+                totalPrice: cartInfo.totalPrice,
+                buyer: userInfo.email
             }
-            localStorage.setItem("cart", JSON.stringify(newCart));
-            // on enregistre dans le store de Redux
-            dispatch(addToCart(newCart));
         } else {
-            const newCart = {
-                product: [
-                    ...cartInfo.product
+            newCart = {
+                products: [
+                    ...cartInfo.products
                 ],
-                buyer: info.id
+                totalPrice: cartInfo.totalPrice,
+                buyer: userInfo.email
             }
             // vu que le produit existe déjà dans le panier, on modifie juste la quantité:
-            newCart.product[indexProduct] = {
-                ...newCart.product[indexProduct],
-                quantity: cartInfo.product[indexProduct].quantity + 1
+            newCart.products[indexProduct] = {
+                ...newCart.products[indexProduct],
+                quantity: cartInfo.products[indexProduct].quantity + 1
             }
-            localStorage.setItem("cart", JSON.stringify(newCart));
-            // on enregistre dans le store de Redux
-            dispatch(addToCart(newCart));
         }
+
+        newCart.totalPrice = calculateCartTotal(newCart.products);
+        dispatch(setCart(newCart));
+        localStorage.setItem("cart", JSON.stringify(newCart));
     }
 
     return (
@@ -101,7 +106,7 @@ function Detail() {
             <section>
                 <h1 className={global.hidden}>Détail</h1>
                 {
-                !tea || !packages ? (
+                !tea || !packages.length ? (
                     <Loading />
                 ) : (
                     <article className={styles.article_product}>

@@ -1,20 +1,20 @@
 import pool from "../config/db.js";
 
 class Query {
-    static async find(query){
-        return await pool.query(query);
+    static async query(queryText){
+        return await pool.query(queryText);
     }
 
-    static async findByValue(query, value){
-        return await pool.query(query, [value]);
+    static async queryByValue(queryText, value){
+        return await pool.query(queryText, [value]);
     }
 
-    static async findByDatas(query, datas){
-        return await pool.query(query, [...Object.values(datas)]);
+    static async queryByObject(queryText, object){
+        return await pool.query(queryText, [...Object.values(object)]);
     }
-    
-    static async write(query, datas) {
-        return await pool.query(query, [...Object.values(datas)]);
+
+    static async queryByArray(queryText, array){
+        return await pool.query(queryText, array);
     }
 }
 

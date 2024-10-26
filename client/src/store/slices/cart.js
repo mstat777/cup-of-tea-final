@@ -1,25 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// initialisation d'une state de base
 const initialState = {
     cartInfo: JSON.parse(localStorage.getItem("cart")) || {
+        products: [],
+        totalPrice: 0,
         buyer: null,
-        product: []
     }
 };
 
-// création des actions/reducers via un "slice"
 const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addToCart: (state, action) => {
+        setCart: (state, action) => {
+            state.cartInfo.products = action.payload.products;
+            state.cartInfo.totalPrice = action.payload.totalPrice;
             state.cartInfo.buyer = action.payload.buyer;
-            state.cartInfo.product = action.payload.product;
-        }
+        },
+        setBuyer: (state, action) => {
+            state.cartInfo.buyer = action.payload;
+        },
     }
 })
 
-export const { addToCart, updateCart } = cartSlice.actions;
+export const { 
+    setCart, setBuyer 
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

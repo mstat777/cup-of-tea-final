@@ -11,6 +11,7 @@ import Tea from "./Components/Pages/Tea/Index";
 import Detail from "./Components/Pages/Detail/Index";
 import About from "./Components/Pages/About/Index";
 import Cart from "./Components/Pages/Cart/Index";
+import Payment from "./Components/Pages/Payment/Index";
 
 import NotFound from "./Components/Pages/NotFound/Index";
 
@@ -37,6 +38,8 @@ function App() {
         </Route>
 
         <Route path="/panier" element={<Cart />} />
+
+        <Route path="/paiement" element={<Payment />} />
 
         <Route path="/not-found" element={<NotFound/>} />
       </Routes>   

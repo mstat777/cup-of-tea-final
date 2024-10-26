@@ -11,9 +11,11 @@ function Home() {
     const [bestSeller, setBestSeller] = useState({});
     const [favourite, setFavourite] = useState({});
 
+    useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth'}) },[]);
+
     // récupère les catégories
     useEffect(() => {
-        async function getData() {
+        async function getCategories() {
             try {
                 const result = await (
                     await fetch("/api/v1/category/all")
@@ -24,7 +26,7 @@ function Home() {
             }
         }
 
-        getData();
+        getCategories();
     }, []);
 
     // récupère le dernier thé insérer en BDD
@@ -81,9 +83,10 @@ function Home() {
                 <h1 className={global.hidden}>Accueil</h1>
 
                 {/* <!-------- choisissez votre thé ----------> */}
-                {(!categories.length || !lastInserted || !bestSeller || !favourite) ? 
+                {(!(categories.length && lastInserted && bestSeller && favourite)) ? 
                     <Loading /> : 
                 <section>
+                    {console.log(categories.length && lastInserted && bestSeller && favourite)}
                     <Card type="categories" data={categories}/>
                     <Card type="tea" data={lastInserted} title="Notre nouveauté"/>
                     <Card type="tea" data={bestSeller} title="Notre best-seller"/>

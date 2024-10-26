@@ -7,11 +7,8 @@ import { signIn } from "../../../../store/slices/user";
 function Signin() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-
-    const [label, setLabel] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
     const [ msg, setMsg ] = useState(null);
 
     async function handleSubmit(e) {
@@ -20,17 +17,16 @@ function Signin() {
         const res = await fetch("/api/v1/user/signin", {
             method: "post",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ label, password }),
+            body: JSON.stringify({ username, password }),
         });
         const json = await res.json();
         setMsg(json.msg);
 
         if ( res.status === 200) {
             localStorage.setItem("auth", json.TOKEN);
-            dispatch(signIn(label));
+            dispatch(signIn(username));
             navigate("/");
         }
-        
     }
 
     return (
@@ -39,12 +35,12 @@ function Signin() {
                 <h1>connexion</h1>
 
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="label">Alias : </label>
+                    <label htmlFor="username">Nom d'utilisateur : </label>
                     <input
                         type="text"
-                        name="label"
-                        value={label}
-                        onChange={(e) => setLabel(e.target.value)}
+                        name="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <label htmlFor="password">Mot de passe : </label>
                     <input 

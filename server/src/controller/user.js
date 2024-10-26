@@ -8,8 +8,8 @@ const SALT = 10;
 
 async function checkToken(req, res) {
     try {
-        const queryUser = "SELECT label FROM user WHERE label = ?";
-        await Query.findByValue(queryUser, req.params.label);
+        const queryUser = "SELECT username FROM user WHERE username = ?";
+        await Query.queryByValue(queryUser, req.params.username);
         res.status(200).json({msg: "authentifié"});
     } catch (err) {
         throw Error(err);
@@ -20,11 +20,11 @@ async function signIn(req, res) {
     try {
         let msg = "";
         
-        const queryUser = "SELECT * FROM user WHERE label = ?";
-        const [user] = await Query.findByValue(queryUser, req.body.label);
+        const queryUser = "SELECT * FROM user WHERE username = ?";
+        const [user] = await Query.queryByValue(queryUser, req.body.username);
         if (user.length) {
             msg = "utilisateur trouvé";
-            const TOKEN = sign({ label: user[0].label }, SK);
+            const TOKEN = sign({ username: user[0].username }, SK);
             res.status(200).json({ msg, TOKEN });
         } else if (!user.length) {
             msg = "mauvais identifiants";
@@ -38,9 +38,9 @@ async function signIn(req, res) {
 async function createAccount(req, res) {
     try {
         let msg = "";
-        const datas = { label: req.body.label, email: req.body.email}; 
-        const queryUser = "SELECT label, email FROM user WHERE label = ? OR email = ?";
-        const [user] = await Query.findByDatas(queryUser, datas);
+        const data = { username: req.body.username, email: req.body.email}; 
+        const queryUser = "SELECT username, email FROM user WHERE username = ? OR email = ?";
+        const [user] = await Query.queryByObject(queryUser, data);
 
         if (user.length) {
             msg = "un utilisateur avec cet identifiant ou email existe déjà";
@@ -48,15 +48,15 @@ async function createAccount(req, res) {
         } else if (!user.length) {
             console.log(req.body);
 
-            const datas = {
-                label: req.body.label,
+            const data = {
+                username: req.body.username,
                 email: req.body.email,
                 password: await hash(req.body.password, SALT),
             };
 
             const query =
-                "INSERT INTO user (label, email, password, role, created_at) VALUES(?, ?, ?, 'user', NOW())";
-            await Query.write(query, datas);
+                "INSERT INTO user (username, email, password, role, created_at) VALUES(?, ?, ?, 'user', NOW())";
+            await Query.queryByObject(query, data);
 
             msg = "utilisateur créé";
             res.status(201).json({ msg });

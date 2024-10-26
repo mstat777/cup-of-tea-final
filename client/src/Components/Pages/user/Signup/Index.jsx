@@ -9,7 +9,7 @@ function Signup(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [label, setLabel] = useState("");
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -18,9 +18,9 @@ function Signup(){
     async function handleSubmit(e) {
         e.preventDefault();
         const res = await fetch("/api/v1/user/signup", {
-            method: "post",
+            method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ label, email, password})
+            body: JSON.stringify({ username, email, password})
         });
         const json = await res.json();
         setMsg(json.msg);
@@ -39,11 +39,11 @@ function Signup(){
                 
                 <form onSubmit={handleSubmit}>
                     <input
-                        placeholder="Votre alias"
+                        placeholder="Votre nom d'utilisateur"
                         type="text"
-                        name="label"
-                        value={label}
-                        onChange={(e) => setLabel(e.target.value)}
+                        name="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <input
                         placeholder="votre email"
